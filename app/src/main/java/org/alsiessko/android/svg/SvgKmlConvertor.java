@@ -4,17 +4,43 @@ import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.graphics.Shader;
 
+import com.ekito.simpleKML.model.Document;
+import com.ekito.simpleKML.model.Kml;
+import com.ekito.simpleKML.model.LatLonAltBox;
+import com.ekito.simpleKML.model.Region;
+
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 /**
  * Created by Alexander S. Sidorov on 6/17/15.
+ *
+ * @see "http://simplekml.readthedocs.org/en/latest/gettingstarted.html"
  */
 public class SvgKmlConvertor implements SvgDataHandler
 {
+    CoordinateConvertor coordinateConvertor;
+    Kml kml;
+
+    public SvgKmlConvertor(CoordinateConvertor coordinateConvertor) {
+        this.coordinateConvertor = coordinateConvertor;
+    }
 
     @Override
-    public void start(RectF bounds) {
+    public void start(RectF bounds)
+    {
+        kml = new Kml();
+
+        Document kmlDocument = new Document();
+
+        LatLonAltBox box  = new LatLonAltBox();
+        // coordinateConvertor ...
+        // box.setWest(); ...
+
+        Region roi = new Region();
+        roi.setLatLonAltBox(box);
+
+        kmlDocument.setRegion( roi );
 
     }
 
@@ -129,6 +155,10 @@ public class SvgKmlConvertor implements SvgDataHandler
     }
 
     public void write(FileOutputStream fos) {
-        
+
+    }
+
+    public String getKmlString() {
+        return kmlString;
     }
 }
