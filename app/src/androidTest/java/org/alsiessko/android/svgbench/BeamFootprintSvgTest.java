@@ -2,7 +2,6 @@ package org.alsiessko.android.svgbench;
 
 import android.test.AndroidTestCase;
 
-import org.alsiessko.android.svg.SvgKmlConvertor;
 import org.alsiessko.android.svg.SvgSaxParser;
 
 /**
@@ -22,7 +21,7 @@ public class BeamFootprintSvgTest extends AndroidTestCase
 
     public void testConversion() throws Exception
     {
-        SvgKmlConvertor convertor = new SvgKmlConvertor();
+        AzercosmosFootprintConverter convertor = new AzercosmosFootprintConverter();
 
         SvgSaxParser parser = new SvgSaxParser(getContext().getAssets(), "sv/azercosmos_01.svg", convertor);
         parser.parse();
